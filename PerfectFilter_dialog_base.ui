@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PerfectFilterDialogBase</class>
+ <widget class="QDialog" name="PerfectFilterDialogBase">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>406</width>
+    <height>562</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>406</width>
+    <height>562</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>406</width>
+    <height>562</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>PerfectFilter</string>
+  </property>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>381</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetMinAndMaxSize</enum>
+    </property>
+    <item row="2" column="4">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Maximo:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="3">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Seleccionar Capa a Filtrar</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="3">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Seleccionar Campo a Filtrar</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="5" colspan="2">
+     <widget class="QDoubleSpinBox" name="max_spin">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>80</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="decimals">
+       <number>5</number>
+      </property>
+      <property name="maximum">
+       <double>10000000000000.000000000000000</double>
+      </property>
+      <property name="singleStep">
+       <double>0.200000000000000</double>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string> Minimo:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3" colspan="4">
+     <widget class="QComboBox" name="cmb_fields">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3" colspan="4">
+     <widget class="QComboBox" name="cmb_layers">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QDoubleSpinBox" name="min_spin">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>80</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="decimals">
+       <number>5</number>
+      </property>
+      <property name="maximum">
+       <double>10000000000000.000000000000000</double>
+      </property>
+      <property name="singleStep">
+       <double>0.200000000000000</double>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" colspan="2">
+     <widget class="QCheckBox" name="range_check">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::RightToLeft</enum>
+      </property>
+      <property name="text">
+       <string>Filtrar Por rango</string>
+      </property>
+      <property name="tristate">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>110</y>
+     <width>241</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Lista de valores:</string>
+   </property>
+   <widget class="QListWidget" name="value_list">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>181</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::ExtendedSelection</enum>
+    </property>
+    <property name="layoutMode">
+     <enum>QListView::SinglePass</enum>
+    </property>
+    <property name="viewMode">
+     <enum>QListView::ListMode</enum>
+    </property>
+    <property name="selectionRectVisible">
+     <bool>false</bool>
+    </property>
+    <property name="currentRow">
+     <number>-1</number>
+    </property>
+    <property name="sortingEnabled">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>60</y>
+      <width>32</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="asc_sorted">
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>A-z</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="desc_sorted">
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Z-a</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLineEdit" name="search_line">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>181</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Buscar Valor...</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>390</y>
+     <width>381</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Reglas</string>
+   </property>
+   <widget class="QTreeWidget" name="rules_tree">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>341</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::ExtendedSelection</enum>
+    </property>
+    <attribute name="headerVisible">
+     <bool>false</bool>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>Reglas</string>
+     </property>
+    </column>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>118</y>
+     <width>131</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="2" column="0">
+     <widget class="QCheckBox" name="zoom_check">
+      <property name="layoutDirection">
+       <enum>Qt::RightToLeft</enum>
+      </property>
+      <property name="text">
+       <string>Zoom</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="2">
+     <widget class="QPushButton" name="removeRule_btn">
+      <property name="text">
+       <string>Eliminar Regla</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QPushButton" name="select_btn">
+      <property name="text">
+       <string>Seleccionar</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QPushButton" name="filter_btn">
+      <property name="text">
+       <string>Filtrar</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QCheckBox" name="checkBox">
+      <property name="text">
+       <string>Seleccion</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="2">
+     <widget class="QPushButton" name="createRule_btn">
+      <property name="text">
+       <string>Crear Regla</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QCheckBox" name="checkBox_2">
+      <property name="text">
+       <string>Filtrar</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QCheckBox" name="strict_check">
+      <property name="layoutDirection">
+       <enum>Qt::RightToLeft</enum>
+      </property>
+      <property name="text">
+       <string>Estricto</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
