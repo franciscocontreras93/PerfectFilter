@@ -57,16 +57,14 @@ class PerfectFilterDialog(QDialog, FORM_CLASS):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         
-        self.functions = PerfectFilterFunctions()
+        self.functions = PerfectFilterFunctions() # PyQGIS functions
         self.setupUi(self)
         self.uiComponents()
         
         self.fields = None
         
         self.layer = None
-        self.field = None
         
-        self.selection = None
         
         self.rules = list()
         
@@ -104,7 +102,8 @@ class PerfectFilterDialog(QDialog, FORM_CLASS):
         """ Function to automatically add the names of the fields of the selected layer.
 
         :param str layer: layer name
-        """        
+        """
+        self.cmb_fields.clear()       
         try: 
             index = self.cmb_layers.currentIndex()
             if index > 0:
@@ -162,6 +161,9 @@ class PerfectFilterDialog(QDialog, FORM_CLASS):
         return selection
     
     def SetFilterRule(self):
+        """ Create rules to select of filter features. Trigger CheckOptions
+
+        """        
         
         if self.strict_check.isChecked(): 
             logic_operator = 'and'
@@ -169,39 +171,64 @@ class PerfectFilterDialog(QDialog, FORM_CLASS):
             logic_operator = 'or'
         selection = self.GetSelectedValues()
         field = self.cmb_fields.currentText()
-        for e in selection: 
-            self.rules.append('''{}  "{}" = '{}' '''.format(logic_operator,field,e)) # must be equal as the QTreeWidgetItem
-            tree_rule = QTreeWidgetItem(self.rules_tree,['''{}  "{}" = '{}' '''.format(logic_operator,field,e)])
+        tree_node = QTreeWidgetItem(self.rules_tree,[self.layer])
+        for e in selection:
+            if e not in self.rules: 
+                self.rules.append('''{}  "{}" = '{}' '''.format(logic_operator,field,e)) # must be equal as the QTreeWidgetItem
+                tree_rule = QTreeWidgetItem(tree_node,['''{}  "{}" = '{}' '''.format(logic_operator,field,e)])
+        self.CheckOptions()
         
-        # print(self.rules)
+    def CheckOptions(self):
+        """ Checker for Options
         #* SELECCION Y FILTRADO AUTOMATICO
-        self.CreateSelection()
-        pass
-            
+        """        
+        if self.selection_check.isChecked():
+            self.CreateSelection()
+        elif self.filter_check.isChecked(): 
+            self.SetFilterToLayerProvider()
+        pass        
     
     def RemoveFilterRule(self):
+        """ Remove rules from rules_tree, trigger CheckOptions
+
+        _extended_summary_
+        """
+        #! BUG: 
+        #! 1) AL ELIMINAR UN NODO DE REGLAS, ARROJA UN ERROR AL REMOVERLAS DE LA LISTA DE REGLAS (SELF.RULES)
+        #! HAY QUE CONTROLAR EL ROOT DEL TREE WIDGET PARA OBTENER LOS HIJOS DEL NODO SUPERIOR. 
+        
         root = self.rules_tree.invisibleRootItem() 
         selected = self.rules_tree.selectedItems()
         for item in selected: 
             (item.parent() or root).removeChild(item)
+            
             self.rules.remove(item.text(0))
-        #* SELECCION Y FILTRADO AUTOMATICO
-        self.CreateSelection()
+        self.CheckOptions()
             
             
     
           
-    def CreateExpression(self):
+    def CreateExpression(self) -> str:
+        """ Create the QgsExpression
+
+        
+
+        :return str: QgsExpression to filter
+        """        
         expression = ''
         # self.rules[0] = self.rules[0][3:] # modify first rule to delete logic_operator (or,and)
         # self.rules[-1] = self.rules[-1][3:] # modify last rule to delete logic_operator (or,and)
         for rule in self.rules: 
             expression = expression + ' ' + rule
-        expression = expression[3:]
-        return expression
+        expression = expression[4:]
+        return str(expression)
     
         
-    def CreateSelection(self): 
+    def CreateSelection(self):
+        """CreateSelection Select features by expression action
+
+        """ 
+                 
         lyr = self.cmb_layers.currentText()
         exp = self.CreateExpression()
         if self.zoom_check.isChecked():
@@ -211,7 +238,9 @@ class PerfectFilterDialog(QDialog, FORM_CLASS):
         
         self.functions.SelectFeaturesByExpression(lyr,exp,zoom)
         
-    def SetFilterToLayerProvider(self): 
+    def SetFilterToLayerProvider(self):
+        """ Set filter to provider
+        """         
         lyr = self.cmb_layers.currentText() 
         exp = self.CreateExpression() 
         

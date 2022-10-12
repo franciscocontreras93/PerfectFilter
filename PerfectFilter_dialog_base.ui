@@ -185,7 +185,7 @@
      </rect>
     </property>
     <property name="selectionMode">
-     <enum>QAbstractItemView::ExtendedSelection</enum>
+     <enum>QAbstractItemView::MultiSelection</enum>
     </property>
     <property name="layoutMode">
      <enum>QListView::SinglePass</enum>
@@ -261,7 +261,7 @@
      <x>10</x>
      <y>390</y>
      <width>381</width>
-     <height>151</height>
+     <height>161</height>
     </rect>
    </property>
    <property name="title">
@@ -273,7 +273,7 @@
       <x>20</x>
       <y>20</y>
       <width>341</width>
-      <height>121</height>
+      <height>101</height>
      </rect>
     </property>
     <property name="selectionMode">
@@ -287,6 +287,19 @@
       <string>Reglas</string>
      </property>
     </column>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>130</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Conteo de Objetos</string>
+    </property>
    </widget>
   </widget>
   <widget class="QWidget" name="gridLayoutWidget_2">
@@ -334,7 +347,7 @@
      </widget>
     </item>
     <item row="4" column="0">
-     <widget class="QCheckBox" name="checkBox">
+     <widget class="QCheckBox" name="selection_check">
       <property name="text">
        <string>Seleccion</string>
       </property>
@@ -351,7 +364,7 @@
      </widget>
     </item>
     <item row="4" column="1">
-     <widget class="QCheckBox" name="checkBox_2">
+     <widget class="QCheckBox" name="filter_check">
       <property name="text">
        <string>Filtrar</string>
       </property>
