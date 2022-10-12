@@ -197,6 +197,9 @@ class PerfectFilterDialog(QDialog, FORM_CLASS):
         #! 1) AL ELIMINAR UN NODO DE REGLAS, ARROJA UN ERROR AL REMOVERLAS DE LA LISTA DE REGLAS (SELF.RULES)
         #! HAY QUE CONTROLAR EL ROOT DEL TREE WIDGET PARA OBTENER LOS HIJOS DEL NODO SUPERIOR. 
         
+        #* AGREGADO EN RAMA RFR01
+        
+        
         root = self.rules_tree.invisibleRootItem() 
         selected = self.rules_tree.selectedItems()
         for item in selected: 
